@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator - Free Online GPA & CGPA Calculator Tool</title>
+    <meta name="description" content="Free online CGPA Calculator and GPA Calculator. Calculate your cumulative GPA instantly with simple or advanced mode. Supports 5-point grading system with full course tracking.">
+    <meta name="keywords" content="CGPA Calculator, GPA Calculator, cumulative GPA, semester GPA, grade point average, university GPA calculator">
+    <meta name="author" content="Jimin Msughter Michael, Newman Yange, Emmanuel Oramulu">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cgpacalculator.app">
+
+    <meta property="og:title" content="CGPA Calculator - Free Online GPA & CGPA Calculator">
+    <meta property="og:description" content="Calculate your CGPA instantly. Simple mode for quick GPA averaging, Advanced mode for full course-level tracking.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cgpacalculator.app">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CGPA Calculator - Free Online GPA & CGPA Calculator">
+    <meta name="twitter:description" content="Calculate your CGPA instantly with our free tool. Simple and Advanced modes available.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "CGPA Calculator",
+        "description": "Free online CGPA and GPA Calculator with simple and advanced modes for academic GPA tracking",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "Code for Community (Tomesu Technologies)"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is CGPA?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "CGPA stands for Cumulative Grade Point Average. It is the weighted average of all grade points earned across all semesters throughout your academic program."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How is CGPA calculated?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "CGPA is calculated by dividing the total quality points (grade point × credit unit for each course) by the total credit units across all semesters."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the difference between GPA and CGPA?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "GPA (Grade Point Average) is calculated for a single semester, while CGPA (Cumulative Grade Point Average) is the overall average across all semesters completed so far."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What grading system does this calculator use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "This calculator uses the 5-point grading system: A=5.0, B=4.0, C=3.0, D=2.0, E=1.0, F=0.0."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #060d09;
+            --bg-elevated: #0c1a12;
+            --bg-card: #101f16;
+            --bg-card-hover: #142820;
+            --fg: #e4ede7;
+            --fg-secondary: #a3b8ab;
+            --muted: #5e7a68;
+            --accent: #00e68a;
+            --accent-dim: rgba(0,230,138,0.12);
+            --accent-glow: rgba(0,230,138,0.25);
+            --warm: #f5a623;
+            --warm-dim: rgba(245,166,35,0.12);
+            --danger: #ff4757;
+            --danger-dim: rgba(255,71,87,0.12);
+            --border: #1a3025;
+            --border-light: #234035;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --radius-lg: 20px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.4);
+            --shadow-accent: 0 4px 20px rgba(0,230,138,0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Animated Background */
+        .bg-scene {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.35;
+            animation: blobFloat 20s ease-in-out infinite;
+        }
+        .bg-blob-1 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, #00e68a, transparent 70%);
+            top: -15%; left: -10%;
+            animation-delay: 0s;
+        }
+        .bg-blob-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #f5a623, transparent 70%);
+            bottom: -10%; right: -8%;
+            animation-delay: -7s;
+            animation-duration: 25s;
+        }
+        .bg-blob-3 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, #00b8d4, transparent 70%);
+            top: 50%; left: 60%;
+            animation-delay: -14s;
+            animation-duration: 22s;
+        }
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(40px, -30px) scale(1.05); }
+            50% { transform: translate(-20px, 40px) scale(0.95); }
+            75% { transform: translate(30px, 20px) scale(1.02); }
+        }
+
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,230,138,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,230,138,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            top: 24px; right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .toast {
+            padding: 14px 22px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--fg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-light);
+            transform: translateX(120%);
+            animation: toastIn 0.4s ease forwards;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 360px;
+        }
+        .toast.success { background: rgba(0,230,138,0.15); border-color: rgba(0,230,138,0.3); }
+        .toast.error { background: rgba(255,71,87,0.15); border-color: rgba(255,71,87,0.3); }
+        .toast.info { background: rgba(0,184,212,0.15); border-color: rgba(0,184,212,0.3); }
+        .toast.out { animation: toastOut 0.3s ease forwards; }
+        @keyframes toastIn { to { transform: translateX(0); } }
+        @keyframes toastOut { to { transform: translateX(120%); opacity: 0; } }
+
+        /* Main Container */
+        .app-container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 16px 60px;
+        }
+
+        /* Header */
+        .app-header {
+            text-align: center;
+            padding: 48px 0 32px;
+        }
+        .app-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px; height: 64px;
+            background: linear-gradient(135deg, var(--accent), #00b8d4);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: var(--bg);
+            box-shadow: var(--shadow-accent);
+        }
+        .app-title {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .app-subtitle {
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 5px;
+            margin: 32px auto;
+            max-width: 520px;
+            position: relative;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 14px 16px;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+            z-index: 1;
+            position: relative;
+            white-space: nowrap;
+        }
+        .tab-btn:hover { color: var(--fg-secondary); }
+        .tab-btn.active {
+            color: var(--bg);
+            background: var(--accent);
+            box-shadow: var(--shadow-accent);
+        }
+        .tab-btn i { margin-right: 6px; }
+
+        /* Section Panels */
+        .tab-panel {
+            display: none;
+            animation: panelIn 0.4s ease;
+        }
+        .tab-panel.active { display: block; }
+        @keyframes panelIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Header */
+        .section-header {
+            margin-bottom: 28px;
+        }
+        .section-title {
+            font-size: clamp(20px, 3.5vw, 26px);
+            font-weight: 700;
+            color: var(--fg);
+            margin-bottom: 6px;
+        }
+        .section-desc {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            border-color: var(--border-light);
+        }
+
+        /* Semester Card */
+        .semester-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+        .semester-card:hover { border-color: var(--border-light); }
+        .semester-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border);
+            gap: 12px;
+        }
+        .semester-card-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--fg);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .semester-card-header h3 .sem-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px; height: 28px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .semester-card-body {
+            padding: 20px;
+        }
+
+        /* Form Controls */
+        .form-row {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+            min-width: 100px;
+        }
+        .form-group.sm { flex: 0 0 80px; min-width: 80px; }
+        .form-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-input, .form-select {
+            padding: 12px 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--fg);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            outline: none;
+            width: 100%;
+        }
+        .form-input:focus, .form-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim);
+        }
+        .form-input::placeholder { color: var(--muted); opacity: 0.6; }
+        .form-input.error { border-color: var(--danger); box-shadow: 0 0 0 3px var(--danger-dim); }
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235e7a68' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+        .form-select option { background: var(--bg-card); color: var(--fg); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            outline: none;
+            white-space: nowrap;
+        }
+        .btn:active { transform: scale(0.97); }
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        .btn-primary:hover { background: #00cc7a; box-shadow: var(--shadow-accent); }
+        .btn-secondary {
+            background: var(--accent-dim);
+            color: var(--accent);
+            border: 1px solid rgba(0,230,138,0.2);
+        }
+        .btn-secondary:hover { background: rgba(0,230,138,0.2); }
+        .btn-warm {
+            background: var(--warm-dim);
+            color: var(--warm);
+            border: 1px solid rgba(245,166,35,0.2);
+        }
+        .btn-warm:hover { background: rgba(245,166,35,0.2); }
+        .btn-danger {
+            background: var(--danger-dim);
+            color: var(--danger);
+            border: 1px solid rgba(255,71,87,0.2);
+            padding: 10px 14px;
+        }
+        .btn-danger:hover { background: rgba(255,71,87,0.2); }
+        .btn-ghost {
+            background: transparent;
+            color: var(--muted);
+            padding: 10px 14px;
+        }
+        .btn-ghost:hover { color: var(--fg-secondary); background: var(--bg-elevated); }
+        .btn-sm { padding: 8px 14px; font-size: 13px; }
+        .btn-full { width: 100%; }
+
+        /* Action Bar */
+        .action-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        /* Result Display */
+        .result-panel {
+            background: linear-gradient(135deg, rgba(0,230,138,0.08), rgba(0,184,212,0.05));
+            border: 1px solid rgba(0,230,138,0.2);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            text-align: center;
+            margin-top: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .result-panel::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(0,230,138,0.06), transparent 50%);
+            pointer-events: none;
+        }
+        .result-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+        .result-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(48px, 10vw, 72px);
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.1;
+            position: relative;
+        }
+        .result-class {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 8px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .class-first { background: rgba(0,230,138,0.15); color: #00e68a; }
+        .class-second-upper { background: rgba(0,184,212,0.15); color: #00b8d4; }
+        .class-second-lower { background: rgba(245,166,35,0.15); color: #f5a623; }
+        .class-third { background: rgba(255,165,2,0.15); color: #ffa502; }
+        .class-pass { background: rgba(255,107,107,0.15); color: #ff6b6b; }
+        .class-fail { background: rgba(255,71,87,0.15); color: #ff4757; }
+
+        .result-stats {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .result-stat {
+            text-align: center;
+        }
+        .result-stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--fg);
+        }
+        .result-stat-label {
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Course Row (Advanced) */
+        .course-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            margin-bottom: 10px;
+            padding: 12px;
+            background: var(--bg-elevated);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            flex-wrap: wrap;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to 
