@@ -564,4 +564,921 @@
         }
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(-8px); }
-            to 
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .course-row .form-group { margin-bottom: 0; }
+        .course-row .form-group.title-field { flex: 2; min-width: 140px; }
+
+        /* Semester GPA inline */
+        .sem-gpa-display {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: var(--accent-dim);
+            border-radius: var(--radius-sm);
+            margin-top: 14px;
+            border: 1px solid rgba(0,230,138,0.15);
+        }
+        .sem-gpa-display .gpa-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .sem-gpa-display .gpa-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Weight toggle */
+        .weight-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            user-select: none;
+        }
+        .weight-toggle input[type="checkbox"] { display: none; }
+        .toggle-track {
+            width: 44px; height: 24px;
+            background: var(--border-light);
+            border-radius: 12px;
+            position: relative;
+            transition: background 0.3s ease;
+            flex-shrink: 0;
+        }
+        .toggle-track::after {
+            content: '';
+            position: absolute;
+            top: 3px; left: 3px;
+            width: 18px; height: 18px;
+            background: var(--fg);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        .weight-toggle input:checked + .toggle-track {
+            background: var(--accent);
+        }
+        .weight-toggle input:checked + .toggle-track::after {
+            transform: translateX(20px);
+            background: var(--bg);
+        }
+        .toggle-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--fg-secondary);
+        }
+
+        /* Simple semester row */
+        .simple-sem-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            margin-bottom: 10px;
+            padding: 14px 16px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            animation: slideIn 0.3s ease;
+            flex-wrap: wrap;
+        }
+        .simple-sem-row .form-group { margin-bottom: 0; }
+        .simple-sem-row .sem-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--fg-secondary);
+            min-width: 100px;
+        }
+        .simple-sem-row .sem-label .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px; height: 26px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 60px;
+        }
+        .faq-title {
+            font-size: clamp(22px, 3.5vw, 28px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        .faq-item:hover { border-color: var(--border-light); }
+        .faq-question {
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--fg);
+            gap: 12px;
+            user-select: none;
+        }
+        .faq-question i {
+            color: var(--muted);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .faq-item.open .faq-question i { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            padding: 0 20px;
+            color: var(--fg-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 20px 18px;
+        }
+
+        /* Footer */
+        .app-footer {
+            margin-top: 60px;
+            padding: 32px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        .footer-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .footer-sub {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+        .footer-devs {
+            font-size: 12px;
+            color: var(--muted);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .app-container { padding: 16px 12px 40px; }
+            .app-header { padding: 32px 0 24px; }
+            .card { padding: 16px; }
+            .semester-card-body { padding: 14px; }
+            .result-panel { padding: 24px 16px; }
+            .result-stats { gap: 20px; }
+            .form-row { flex-direction: column; }
+            .form-group.sm { flex: 1; min-width: auto; }
+            .course-row { flex-direction: column; gap: 8px; }
+            .course-row .form-group { width: 100%; }
+            .course-row .form-group.title-field { flex: 1; }
+            .simple-sem-row { flex-direction: column; gap: 8px; }
+            .simple-sem-row .sem-label { min-width: auto; }
+            .action-bar { flex-direction: column; }
+            .action-bar .btn { width: 100%; }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+        /* Focus visible */
+        *:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="bg-scene" aria-hidden="true">
+        <div class="bg-blob bg-blob-1"></div>
+        <div class="bg-blob bg-blob-2"></div>
+        <div class="bg-blob bg-blob-3"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="app-logo" aria-hidden="true">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1 class="app-title">CGPA Calculator</h1>
+            <p class="app-subtitle">Calculate your cumulative GPA instantly with simple or advanced tracking modes</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <nav class="tab-nav" role="tablist" aria-label="Calculator mode">
+            <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="simplePanel" id="simpleTab" onclick="switchTab('simple')">
+                <i class="fas fa-bolt"></i> Simple Mode
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="advancedPanel" id="advancedTab" onclick="switchTab('advanced')">
+                <i class="fas fa-layer-group"></i> Advanced Mode
+            </button>
+        </nav>
+
+        <main>
+            <!-- ==================== SIMPLE MODE ==================== -->
+            <section class="tab-panel active" id="simplePanel" role="tabpanel" aria-labelledby="simpleTab">
+                <div class="section-header">
+                    <h2 class="section-title">Simple CGPA Calculator by uploading your semester GPA</h2>
+                    <p class="section-desc">Enter your GPA for each semester. Toggle credit weights for weighted average calculation.</p>
+                </div>
+
+                <!-- Weight Toggle -->
+                <label class="weight-toggle" tabindex="0" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();document.getElementById('weightToggle').click();}">
+                    <input type="checkbox" id="weightToggle" onchange="toggleWeightMode()">
+                    <span class="toggle-track"></span>
+                    <span class="toggle-text">Use credit weights per semester</span>
+                </label>
+
+                <!-- Semester List -->
+                <div id="simpleSemesterList"></div>
+
+                <!-- Action Bar -->
+                <div class="action-bar">
+                    <button class="btn btn-secondary" onclick="addSimpleSemester()">
+                        <i class="fas fa-plus"></i> Add Semester
+                    </button>
+                    <button class="btn btn-ghost" onclick="clearSimpleAll()">
+                        <i class="fas fa-eraser"></i> Clear All
+                    </button>
+                </div>
+
+                <!-- Result -->
+                <div class="result-panel" id="simpleResult" style="display:none;">
+                    <div class="result-label">Your Cumulative GPA</div>
+                    <div class="result-value" id="simpleCGPA">0.00</div>
+                    <div id="simpleClass"></div>
+                    <div class="result-stats" id="simpleStats"></div>
+                </div>
+            </section>
+
+            <!-- ==================== ADVANCED MODE ==================== -->
+            <section class="tab-panel" id="advancedPanel" role="tabpanel" aria-labelledby="advancedTab">
+                <div class="section-header">
+                    <h2 class="section-title">Advanced CGPA Calculator for full course tracking</h2>
+                    <p class="section-desc">Add semesters and courses with units and grades for precise CGPA calculation on a 5-point scale.</p>
+                </div>
+
+                <!-- Grading Reference -->
+                <div class="card" style="margin-bottom:20px; padding:16px 20px;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+                        <i class="fas fa-info-circle" style="color:var(--accent);"></i>
+                        <span style="font-weight:600;font-size:14px;">5-Point Grading Scale</span>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                        <span style="padding:4px 12px;background:rgba(0,230,138,0.12);color:#00e68a;border-radius:6px;font-size:13px;font-weight:600;">A = 5.0</span>
+                        <span style="padding:4px 12px;background:rgba(0,184,212,0.12);color:#00b8d4;border-radius:6px;font-size:13px;font-weight:600;">B = 4.0</span>
+                        <span style="padding:4px 12px;background:rgba(245,166,35,0.12);color:#f5a623;border-radius:6px;font-size:13px;font-weight:600;">C = 3.0</span>
+                        <span style="padding:4px 12px;background:rgba(255,165,2,0.12);color:#ffa502;border-radius:6px;font-size:13px;font-weight:600;">D = 2.0</span>
+                        <span style="padding:4px 12px;background:rgba(255,107,107,0.12);color:#ff6b6b;border-radius:6px;font-size:13px;font-weight:600;">E = 1.0</span>
+                        <span style="padding:4px 12px;background:rgba(255,71,87,0.12);color:#ff4757;border-radius:6px;font-size:13px;font-weight:600;">F = 0.0</span>
+                    </div>
+                </div>
+
+                <!-- Semester List -->
+                <div id="advancedSemesterList"></div>
+
+                <!-- Action Bar -->
+                <div class="action-bar">
+                    <button class="btn btn-secondary" onclick="addAdvancedSemester()">
+                        <i class="fas fa-plus"></i> Add Semester
+                    </button>
+                    <button class="btn btn-ghost" onclick="clearAdvancedAll()">
+                        <i class="fas fa-eraser"></i> Clear All
+                    </button>
+                </div>
+
+                <!-- Result -->
+                <div class="result-panel" id="advancedResult" style="display:none;">
+                    <div class="result-label">Your Cumulative GPA</div>
+                    <div class="result-value" id="advancedCGPA">0.00</div>
+                    <div id="advancedClass"></div>
+                    <div class="result-stats" id="advancedStats"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" aria-label="Frequently Asked Questions">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')toggleFaq(this)" aria-expanded="false">
+                    <span>What is CGPA?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    CGPA stands for Cumulative Grade Point Average. It represents the weighted mean of all your grade points across every semester throughout your academic program. Unlike a single-semester GPA, CGPA reflects your overall academic performance from enrollment to date.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')toggleFaq(this)" aria-expanded="false">
+                    <span>How is CGPA calculated?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    CGPA is calculated by dividing the total quality points by the total credit units. Quality points for each course equal the grade point multiplied by the course credit unit. Sum all quality points across all semesters, then divide by the sum of all credit units. Formula: CGPA = Total Quality Points / Total Credit Units.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')toggleFaq(this)" aria-expanded="false">
+                    <span>What is the difference between GPA and CGPA?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    GPA (Grade Point Average) is calculated for a single semester or term. CGPA (Cumulative Grade Point Average) is the overall average across all semesters you have completed. Your semester GPA contributes to your CGPA, but they are distinct metrics — one measures a term, the other measures your entire degree progress.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')toggleFaq(this)" aria-expanded="false">
+                    <span>What grading system does this calculator use?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    This calculator uses the Nigerian 5-point grading system: A (Excellent) = 5.0, B (Very Good) = 4.0, C (Good) = 3.0, D (Fair) = 2.0, E (Pass) = 1.0, F (Fail) = 0.0. This scale is standard in most Nigerian universities and similar institutions.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')toggleFaq(this)" aria-expanded="false">
+                    <span>What CGPA do I need for First Class Honours?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Under the 5-point grading system, the classification thresholds are typically: First Class (4.50 - 5.00), Second Class Upper (3.50 - 4.49), Second Class Lower (2.40 - 3.49), Third Class (1.50 - 2.39), Pass (1.00 - 1.49). Below 1.00 is typically a Fail. These may vary slightly between institutions.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')toggleFaq(this)" aria-expanded="false">
+                    <span>Is my data saved?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes. All data you enter in both Simple and Advanced modes is automatically saved to your browser's local storage. When you return to the calculator, your previous entries will be restored. This data stays on your device only and is never sent to any server.
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-brand">Powered by Code for Community (Tomesu Technologies)</div>
+            <div class="footer-sub">Free CGPA Calculator for students everywhere</div>
+            <div class="footer-devs">Developed by Jimin Msughter Michael, Newman Yange, Emmanuel Oramulu</div>
+        </footer>
+    </div>
+
+<script>
+    /* ================================================
+       STATE & CONFIG
+    ================================================ */
+    const GRADE_POINTS = { 'A': 5.0, 'B': 4.0, 'C': 3.0, 'D': 2.0, 'E': 1.0, 'F': 0.0 };
+    const STORAGE_KEYS = { simple: 'cgpa_calc_simple', advanced: 'cgpa_calc_advanced', tab: 'cgpa_calc_tab' };
+
+    let simpleState = { semesters: [], useWeights: false };
+    let advancedState = { semesters: [] };
+
+    /* ================================================
+       TOAST NOTIFICATION
+    ================================================ */
+    function showToast(message, type = 'info') {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        const iconMap = { success: 'fa-check-circle', error: 'fa-exclamation-circle', info: 'fa-info-circle' };
+        toast.innerHTML = `<i class="fas ${iconMap[type] || iconMap.info}"></i><span>${message}</span>`;
+        container.appendChild(toast);
+        setTimeout(() => {
+            toast.classList.add('out');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
+    /* ================================================
+       TAB SWITCHING
+    ================================================ */
+    function switchTab(tab) {
+        const simpleTab = document.getElementById('simpleTab');
+        const advancedTab = document.getElementById('advancedTab');
+        const simplePanel = document.getElementById('simplePanel');
+        const advancedPanel = document.getElementById('advancedPanel');
+
+        if (tab === 'simple') {
+            simpleTab.classList.add('active');
+            simpleTab.setAttribute('aria-selected', 'true');
+            advancedTab.classList.remove('active');
+            advancedTab.setAttribute('aria-selected', 'false');
+            simplePanel.classList.add('active');
+            advancedPanel.classList.remove('active');
+        } else {
+            advancedTab.classList.add('active');
+            advancedTab.setAttribute('aria-selected', 'true');
+            simpleTab.classList.remove('active');
+            simpleTab.setAttribute('aria-selected', 'false');
+            advancedPanel.classList.add('active');
+            simplePanel.classList.remove('active');
+        }
+
+        localStorage.setItem(STORAGE_KEYS.tab, tab);
+    }
+
+    /* ================================================
+       CLASSIFICATION HELPER
+    ================================================ */
+    function getClassification(cgpa) {
+        if (cgpa >= 4.50) return { label: 'First Class Honours', cls: 'class-first' };
+        if (cgpa >= 3.50) return { label: 'Second Class Upper', cls: 'class-second-upper' };
+        if (cgpa >= 2.40) return { label: 'Second Class Lower', cls: 'class-second-lower' };
+        if (cgpa >= 1.50) return { label: 'Third Class', cls: 'class-third' };
+        if (cgpa >= 1.00) return { label: 'Pass', cls: 'class-pass' };
+        return { label: 'Fail', cls: 'class-fail' };
+    }
+
+    /* ================================================
+       SIMPLE MODE
+    ================================================ */
+    function addSimpleSemester(gpa = '', weight = '') {
+        const id = Date.now() + Math.random();
+        simpleState.semesters.push({ id, gpa, weight });
+        renderSimpleSemesters();
+        saveSimpleState();
+    }
+
+    function removeSimpleSemester(id) {
+        simpleState.semesters = simpleState.semesters.filter(s => s.id !== id);
+        renderSimpleSemesters();
+        calculateSimpleCGPA();
+        saveSimpleState();
+    }
+
+    function updateSimpleSemester(id, field, value) {
+        const sem = simpleState.semesters.find(s => s.id === id);
+        if (sem) {
+            sem[field] = value;
+            calculateSimpleCGPA();
+            saveSimpleState();
+        }
+    }
+
+    function toggleWeightMode() {
+        simpleState.useWeights = document.getElementById('weightToggle').checked;
+        renderSimpleSemesters();
+        calculateSimpleCGPA();
+        saveSimpleState();
+    }
+
+    function renderSimpleSemesters() {
+        const list = document.getElementById('simpleSemesterList');
+        const useWeights = simpleState.useWeights;
+
+        if (simpleState.semesters.length === 0) {
+            list.innerHTML = `
+                <div style="text-align:center;padding:40px 20px;color:var(--muted);">
+                    <i class="fas fa-calculator" style="font-size:32px;margin-bottom:12px;display:block;opacity:0.4;"></i>
+                    <p style="font-size:14px;">No semesters added yet. Click "Add Semester" to get started.</p>
+                </div>`;
+            return;
+        }
+
+        list.innerHTML = simpleState.semesters.map((sem, i) => `
+            <div class="simple-sem-row">
+                <div class="sem-label">
+                    <span class="num">${i + 1}</span>
+                    Semester ${i + 1}
+                </div>
+                <div class="form-group" style="flex:${useWeights ? '1' : '2'};min-width:120px;">
+                    <label class="form-label" for="sgpa_${sem.id}">GPA</label>
+                    <input type="number" id="sgpa_${sem.id}" class="form-input" placeholder="e.g. 4.50"
+                        min="0" max="5" step="0.01" value="${sem.gpa}"
+                        oninput="updateSimpleSemester(${sem.id},'gpa',this.value);validateGPAInput(this)"
+                        aria-label="GPA for Semester ${i+1}">
+                </div>
+                ${useWeights ? `
+                <div class="form-group sm">
+                    <label class="form-label" for="sw_${sem.id}">Credits</label>
+                    <input type="number" id="sw_${sem.id}" class="form-input" placeholder="e.g. 24"
+                        min="1" step="1" value="${sem.weight}"
+                        oninput="updateSimpleSemester(${sem.id},'weight',this.value)"
+                        aria-label="Credit weight for Semester ${i+1}">
+                </div>` : ''}
+                <button class="btn btn-danger btn-sm" onclick="removeSimpleSemester(${sem.id})" aria-label="Remove Semester ${i+1}" title="Remove">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        `).join('');
+    }
+
+    function validateGPAInput(input) {
+        const val = parseFloat(input.value);
+        if (input.value !== '' && (val < 0 || val > 5)) {
+            input.classList.add('error');
+        } else {
+            input.classList.remove('error');
+        }
+    }
+
+    function calculateSimpleCGPA() {
+        const resultPanel = document.getElementById('simpleResult');
+        const cgpaDisplay = document.getElementById('simpleCGPA');
+        const classDisplay = document.getElementById('simpleClass');
+        const statsDisplay = document.getElementById('simpleStats');
+
+        const validSems = simpleState.semesters.filter(s => s.gpa !== '' && !isNaN(parseFloat(s.gpa)));
+
+        if (validSems.length === 0) {
+            resultPanel.style.display = 'none';
+            return;
+        }
+
+        resultPanel.style.display = 'block';
+        let cgpa, totalWeight;
+
+        if (simpleState.useWeights) {
+            let totalQP = 0;
+            totalWeight = 0;
+            validSems.forEach(s => {
+                const w = s.weight && !isNaN(parseFloat(s.weight)) ? parseFloat(s.weight) : 1;
+                totalQP += parseFloat(s.gpa) * w;
+                totalWeight += w;
+            });
+            cgpa = totalWeight > 0 ? totalQP / totalWeight : 0;
+        } else {
+            const totalGPA = validSems.reduce((sum, s) => sum + parseFloat(s.gpa), 0);
+            cgpa = totalGPA / validSems.length;
+            totalWeight = validSems.length;
+        }
+
+        cgpa = Math.min(5.0, Math.max(0, cgpa));
+        cgpaDisplay.textContent = cgpa.toFixed(2);
+
+        const classification = getClassification(cgpa);
+        classDisplay.innerHTML = `<span class="result-class ${classification.cls}">${classification.label}</span>`;
+
+        statsDisplay.innerHTML = `
+            <div class="result-stat">
+                <div class="result-stat-value">${validSems.length}</div>
+                <div class="result-stat-label">Semesters</div>
+            </div>
+            <div class="result-stat">
+                <div class="result-stat-value">${simpleState.useWeights ? totalWeight.toFixed(0) : 'Avg'}</div>
+                <div class="result-stat-label">${simpleState.useWeights ? 'Total Credits' : 'Method'}</div>
+            </div>
+            <div class="result-stat">
+                <div class="result-stat-value">${Math.max(...validSems.map(s => parseFloat(s.gpa))).toFixed(2)}</div>
+                <div class="result-stat-label">Highest GPA</div>
+            </div>
+        `;
+    }
+
+    function clearSimpleAll() {
+        if (simpleState.semesters.length === 0) return;
+        simpleState.semesters = [];
+        renderSimpleSemesters();
+        document.getElementById('simpleResult').style.display = 'none';
+        saveSimpleState();
+        showToast('All semesters cleared', 'info');
+    }
+
+    function saveSimpleState() {
+        localStorage.setItem(STORAGE_KEYS.simple, JSON.stringify(simpleState));
+    }
+
+    function loadSimpleState() {
+        const saved = localStorage.getItem(STORAGE_KEYS.simple);
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                simpleState = parsed;
+                document.getElementById('weightToggle').checked = simpleState.useWeights || false;
+            } catch (e) {
+                simpleState = { semesters: [], useWeights: false };
+            }
+        }
+    }
+
+    /* ================================================
+       ADVANCED MODE
+    ================================================ */
+    function addAdvancedSemester() {
+        const id = Date.now() + Math.random();
+        const courseId = Date.now() + Math.random() + 1;
+        advancedState.semesters.push({
+            id,
+            courses: [{ id: courseId, title: '', unit: '', grade: 'A' }]
+        });
+        renderAdvancedSemesters();
+        saveAdvancedState();
+    }
+
+    function removeAdvancedSemester(semId) {
+        advancedState.semesters = advancedState.semesters.filter(s => s.id !== semId);
+        renderAdvancedSemesters();
+        calculateAdvancedCGPA();
+        saveAdvancedState();
+    }
+
+    function addCourse(semId) {
+        const sem = advancedState.semesters.find(s => s.id === semId);
+        if (sem) {
+            const courseId = Date.now() + Math.random();
+            sem.courses.push({ id: courseId, title: '', unit: '', grade: 'A' });
+            renderAdvancedSemesters();
+            saveAdvancedState();
+        }
+    }
+
+    function removeCourse(semId, courseId) {
+        const sem = advancedState.semesters.find(s => s.id === semId);
+        if (sem && sem.courses.length > 1) {
+            sem.courses = sem.courses.filter(c => c.id !== courseId);
+            renderAdvancedSemesters();
+            calculateAdvancedCGPA();
+            saveAdvancedState();
+        } else if (sem && sem.courses.length === 1) {
+            showToast('A semester must have at least one course', 'error');
+        }
+    }
+
+    function updateCourse(semId, courseId, field, value) {
+        const sem = advancedState.semesters.find(s => s.id === semId);
+        if (sem) {
+            const course = sem.courses.find(c => c.id === courseId);
+            if (course) {
+                course[field] = value;
+                calculateAdvancedCGPA();
+                saveAdvancedState();
+            }
+        }
+    }
+
+    function renderAdvancedSemesters() {
+        const list = document.getElementById('advancedSemesterList');
+
+        if (advancedState.semesters.length === 0) {
+            list.innerHTML = `
+                <div style="text-align:center;padding:40px 20px;color:var(--muted);">
+                    <i class="fas fa-book-open" style="font-size:32px;margin-bottom:12px;display:block;opacity:0.4;"></i>
+                    <p style="font-size:14px;">No semesters added yet. Click "Add Semester" to begin tracking your courses.</p>
+                </div>`;
+            return;
+        }
+
+        list.innerHTML = advancedState.semesters.map((sem, si) => {
+            const semGPA = calcSemesterGPA(sem);
+            const semUnits = calcSemesterUnits(sem);
+
+            return `
+            <article class="semester-card">
+                <div class="semester-card-header">
+                    <h3><span class="sem-num">${si + 1}</span> Semester ${si + 1}</h3>
+                    <button class="btn btn-danger btn-sm" onclick="removeAdvancedSemester(${sem.id})" aria-label="Remove Semester ${si+1}" title="Remove Semester">
+                        <i class="fas fa-trash-alt"></i> Remove
+                    </button>
+                </div>
+                <div class="semester-card-body">
+                    ${sem.courses.map((course, ci) => `
+                    <div class="course-row">
+                        <div class="form-group title-field">
+                            <label class="form-label" for="ct_${course.id}">Course Title</label>
+                            <input type="text" id="ct_${course.id}" class="form-input" placeholder="e.g. Mathematics 101"
+                                value="${escapeHtml(course.title)}"
+                                oninput="updateCourse(${sem.id},${course.id},'title',this.value)"
+                                aria-label="Course title ${ci+1}">
+                        </div>
+                        <div class="form-group sm">
+                            <label class="form-label" for="cu_${course.id}">Unit</label>
+                            <input type="number" id="cu_${course.id}" class="form-input" placeholder="3"
+                                min="1" max="12" step="1" value="${course.unit}"
+                                oninput="updateCourse(${sem.id},${course.id},'unit',this.value)"
+                                aria-label="Course unit ${ci+1}">
+                        </div>
+                        <div class="form-group sm">
+                            <label class="form-label" for="cg_${course.id}">Grade</label>
+                            <select id="cg_${course.id}" class="form-select"
+                                onchange="updateCourse(${sem.id},${course.id},'grade',this.value)"
+                                aria-label="Course grade ${ci+1}">
+                                ${Object.keys(GRADE_POINTS).map(g =>
+                                    `<option value="${g}" ${course.grade === g ? 'selected' : ''}>${g}</option>`
+                                ).join('')}
+                            </select>
+                        </div>
+                        <button class="btn btn-ghost btn-sm" onclick="removeCourse(${sem.id},${course.id})" aria-label="Remove course ${ci+1}" title="Remove Course" style="margin-bottom:1px;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    `).join('')}
+
+                    <button class="btn btn-warm btn-sm" onclick="addCourse(${sem.id})" style="margin-top:6px;">
+                        <i class="fas fa-plus"></i> Add Course
+                    </button>
+
+                    <div class="sem-gpa-display">
+                        <span class="gpa-label">Semester GPA</span>
+                        <span class="gpa-value">${semGPA.toFixed(2)}</span>
+                    </div>
+                </div>
+            </article>`;
+        }).join('');
+    }
+
+    function calcSemesterUnits(sem) {
+        return sem.courses.reduce((sum, c) => {
+            const u = parseInt(c.unit);
+            return sum + (isNaN(u) ? 0 : u);
+        }, 0);
+    }
+
+    function calcSemesterGPA(sem) {
+        let totalQP = 0, totalUnits = 0;
+        sem.courses.forEach(c => {
+            const u = parseInt(c.unit);
+            if (!isNaN(u) && u > 0) {
+                totalQP += (GRADE_POINTS[c.grade] || 0) * u;
+                totalUnits += u;
+            }
+        });
+        return totalUnits > 0 ? totalQP / totalUnits : 0;
+    }
+
+    function calculateAdvancedCGPA() {
+        const resultPanel = document.getElementById('advancedResult');
+        const cgpaDisplay = document.getElementById('advancedCGPA');
+        const classDisplay = document.getElementById('advancedClass');
+        const statsDisplay = document.getElementById('advancedStats');
+
+        let totalQP = 0, totalUnits = 0, totalCourses = 0;
+
+        advancedState.semesters.forEach(sem => {
+            sem.courses.forEach(c => {
+                const u = parseInt(c.unit);
+                if (!isNaN(u) && u > 0) {
+                    totalQP += (GRADE_POINTS[c.grade] || 0) * u;
+                    totalUnits += u;
+                    totalCourses++;
+                }
+            });
+        });
+
+        if (totalUnits === 0) {
+            resultPanel.style.display = 'none';
+            return;
+        }
+
+        const cgpa = Math.min(5.0, totalQP / totalUnits);
+        resultPanel.style.display = 'block';
+        cgpaDisplay.textContent = cgpa.toFixed(2);
+
+        const classification = getClassification(cgpa);
+        classDisplay.innerHTML = `<span class="result-class ${classification.cls}">${classification.label}</span>`;
+
+        statsDisplay.innerHTML = `
+            <div class="result-stat">
+                <div class="result-stat-value">${advancedState.semesters.length}</div>
+                <div class="result-stat-label">Semesters</div>
+            </div>
+            <div class="result-stat">
+                <div class="result-stat-value">${totalCourses}</div>
+                <div class="result-stat-label">Courses</div>
+            </div>
+            <div class="result-stat">
+                <div class="result-stat-value">${totalUnits}</div>
+                <div class="result-stat-label">Total Units</div>
+            </div>
+        `;
+    }
+
+    function clearAdvancedAll() {
+        if (advancedState.semesters.length === 0) return;
+        advancedState.semesters = [];
+        renderAdvancedSemesters();
+        document.getElementById('advancedResult').style.display = 'none';
+        saveAdvancedState();
+        showToast('All semesters cleared', 'info');
+    }
+
+    function saveAdvancedState() {
+        localStorage.setItem(STORAGE_KEYS.advanced, JSON.stringify(advancedState));
+    }
+
+    function loadAdvancedState() {
+        const saved = localStorage.getItem(STORAGE_KEYS.advanced);
+        if (saved) {
+            try {
+                advancedState = JSON.parse(saved);
+            } catch (e) {
+                advancedState = { semesters: [] };
+            }
+        }
+    }
+
+    /* ================================================
+       FAQ TOGGLE
+    ================================================ */
+    function toggleFaq(el) {
+        const item = el.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        /* Close all other FAQs */
+        document.querySelectorAll('.faq-item.open').forEach(fi => {
+            fi.classList.remove('open');
+            fi.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+            item.classList.add('open');
+            el.setAttribute('aria-expanded', 'true');
+        }
+    }
+
+    /* ================================================
+       HTML ESCAPE HELPER
+    ================================================ */
+    function escapeHtml(text) {
+        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+        return String(text).replace(/[&<>"']/g, m => map[m]);
+    }
+
+    /* ================================================
+       INITIALIZATION
+    ================================================ */
+    function init() {
+        /* Load saved state */
+        loadSimpleState();
+        loadAdvancedState();
+
+        /* Restore active tab */
+        const savedTab = localStorage.getItem(STORAGE_KEYS.tab);
+        if (savedTab === 'advanced') {
+            switchTab('advanced');
+        }
+
+        /* Render both panels (data preserved even when hidden) */
+        renderSimpleSemesters();
+        calculateSimpleCGPA();
+        renderAdvancedSemesters();
+        calculateAdvancedCGPA();
+
+        /* Add initial semester if empty */
+        if (simpleState.semesters.length === 0) {
+            addSimpleSemester();
+            addSimpleSemester();
+        }
+        if (advancedState.semesters.length === 0) {
+            addAdvancedSemester();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>
